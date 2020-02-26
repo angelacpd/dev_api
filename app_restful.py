@@ -1,7 +1,7 @@
 from flask import Flask, request
 from flask_restful import Resource, Api
 import json
-from skills import Skills
+from skills import Skills, list_skills
 
 
 app = Flask(__name__)
@@ -16,7 +16,7 @@ developers = [
     {
         "id": "1",
         "name": "Eric",
-        "skills": ["C", "Unix", "Assembly", "Real-Time"]}
+        "skills": ["C", "Unix", "Assembly"]}
 ]
 
 
@@ -48,11 +48,28 @@ class Developer(Resource):
 class ListDevelopers(Resource):
     def post(self):
         data_in = json.loads(request.data)
-        position = len(developers)
-        data_in['id'] = position
-        developers.append(data_in)
-        message = "Register inserted. id={}".format(position)
-        return {"status": "Success!", "message": message}
+        dev_skills = data_in['skills']
+        missing_skills = []
+
+        for dev_skill in dev_skills:
+            skill_exists = False
+            for skill in list_skills:
+                if dev_skill == skill:
+                    skill_exists = True
+            if not skill_exists:
+                missing_skills.append(dev_skill)
+
+        if len(missing_skills) == 0:
+            position = len(developers)
+            data_in['id'] = position
+            developers.append(data_in)
+            message = "Register inserted. id={}".format(position)
+            status = "Success!"
+        else:
+            message = "Unable to register developer. Missing skills: {}".format(missing_skills)
+            status = "Failure!"
+
+        return {"status": status, "message": message}
 
     def get(self):
         return developers

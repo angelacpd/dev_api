@@ -12,7 +12,9 @@ class Skills(Resource):
 
     def post(self):
         # Example data_in:
-        # {"NewSkill": "Assembly"}
+        # {
+        #     "NewSkill": "Assembly"
+        # }
         data_in = json.loads(request.data)
         skill = data_in['NewSkill']
         list_skills.append(skill)
