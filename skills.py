@@ -31,3 +31,15 @@ class Skills(Resource):
         list_skills[position] = skill
         message = "Edited skill n. {}.".format(position)
         return {"status": "Success!", "message": message}
+
+    def delete(self):
+        # Example data_in:
+        # {
+        #     "id": 1,
+        # }
+        data_in = json.loads(request.data)
+        position = data_in["id"]
+        skill = list_skills[position]
+        list_skills.pop(position)
+        message = "Skill {} deleted.".format(skill)
+        return {"status": "Success!", "message": message}
