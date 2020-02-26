@@ -2,3 +2,4 @@
 .idea
 *.pyc
 *.xml
+./__pycache__/
