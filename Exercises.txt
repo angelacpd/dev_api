@@ -1,0 +1,26 @@
+Exercise - Flask
+1- Desenvolva uma API que gerencie um cadastro de tarefas
+2- A API deve possuir uma lista de tarefas com os seguintes campos: id, responsavel, tarefa e status
+3- A API deve permitir listar todas as tarefas e tambem incluir novas tarefas
+4- A API deve permitir consultar uma tarefa atraves do ID, alterar o status de uma tarefa e tambem excluir uma tarefa
+5- Nenhuma outra alteracao deve ser permitida alem do status da tarefa.
+Dica:
+Abaixo como deve ser o inicio do cadastro de tarefas e como realizar a alteracao de um status
+O metodo POST deve receber o ID e o Status e assim realizar a alteracao apenas do status e nao de todo o dicionario
+
+tarefas = [
+	{
+		'id': 0,
+		'responsavel': 'rafael',
+		'tarefa': 'Desenvolver metodo GET',
+		'status': 'concluido'
+	},
+	{
+		'id': 1,
+		'responsavel': 'galleani',
+		'tarefa': 'Desenvolver metodo POST',
+		'status': 'pendente'
+	},
+]
+
+tarefas[1]['status'] = 'concluido'
