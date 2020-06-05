@@ -42,7 +42,7 @@ def task():
 
 
 # Edit task. Delete task. Show error message if task id does not exist.
-@app.route('/tasks/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+@app.route('/tasks/<int:id>/', methods=['GET', 'PUT', 'DELETE'])
 def task_id(id):
     if request.method == 'PUT':
         data_in = json.loads(request.data)
